@@ -6,7 +6,11 @@ export default async function handler(
   res: NextApiResponse
 ) {
     try{
-        const data = await prisma.post.findMany();
+        const data = await prisma.post.findMany({
+            where:{
+                published:true
+            }
+        });
         return res.status(200).json(data);
     }
     catch(error){

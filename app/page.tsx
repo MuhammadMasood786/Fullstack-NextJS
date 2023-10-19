@@ -1,3 +1,4 @@
+
 import Link from "next/link";
 
 async function getPosts() {
@@ -7,10 +8,26 @@ async function getPosts() {
   }
   return res.json();
 }
+async function createPost() {
+  const data = await fetch(`${process.env.BASE_URL}/api/createPost`, {
+    method: "POST",
+    body: JSON.stringify({
+      title: "Second Entry",
+      content: "",
+      published: true,
+    }),
+  });
+  const res = await data.json();
+  console.log("Create Post Response: ", res);
+}
 
 export default async function Home() {
-  const data = await getPosts();
-  console.log("Data: ", data);
+  const getData = await getPosts();
+  console.log("getData: ", getData);
+  const postData = await createPost();
+  console.log("postData: ", postData);
+
+  
   return (
     <main className="py-8 px-48">
       <Link
@@ -19,6 +36,8 @@ export default async function Home() {
       >
         NextJS'13 with Tailwind, Prisma, Postgresql and Typescript
       </Link>
+
+      
     </main>
   );
 }
