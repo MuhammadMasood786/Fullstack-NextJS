@@ -24,8 +24,8 @@ async function createPost() {
 export default async function Home() {
   const getData = await getPosts();
   console.log("getData: ", getData);
-  const postData = await createPost();
-  console.log("postData: ", postData);
+  // const postData = await createPost();
+  // console.log("postData: ", postData);
 
   
   return (

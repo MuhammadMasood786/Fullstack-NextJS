@@ -8,7 +8,10 @@ export default async function handler(
     try{
         const data = await prisma.post.findMany({
             where:{
-                published:true
+              title:{
+                contains:'Enntry',
+                mode:'insensitive'
+              }
             }
         });
         return res.status(200).json(data);
